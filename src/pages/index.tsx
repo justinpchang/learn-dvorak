@@ -1,3 +1,4 @@
+import { KeyboardDisplay } from "@/components/KeyboardDisplay";
 import { TypingWindow } from "@/components/TypingWindow";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
             "When we look to the individuals of the same variety or sub-variety of our older cultivated plants and animals, one of the first points which strikes us, is, that they generally differ much more from each other, than do the individuals of any one species or variety in a state of nature."
           }
         />
+        <KeyboardDisplay />
       </div>
     </>
   );

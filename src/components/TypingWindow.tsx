@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import useTyping, { CharStateType, PhaseType } from "react-typing-game-hook";
 
 interface Props {
@@ -12,6 +12,7 @@ function TypingWindow({ text }: Props) {
 
   const {
     states: {
+      chars,
       charsState,
       currIndex,
       phase,

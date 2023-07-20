@@ -2038,6 +2038,11 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-simple-keyboard@^3.6.43:
+  version "3.6.43"
+  resolved "https://registry.yarnpkg.com/react-simple-keyboard/-/react-simple-keyboard-3.6.43.tgz#07cace54907e52ac9e27d7bf8609febba8aff951"
+  integrity sha512-MEcwwSx8DBzu/VYYSn8CjSuTTzMqW9jdTSk8/sQJUnoJJew9qjYRsUjd4T4KWEQqeo9w3AlyeVD4hA/l98nb5Q==
+
 react-typing-game-hook@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/react-typing-game-hook/-/react-typing-game-hook-1.4.2.tgz#5bef8cbd280c38654ae9ad1580c4e6368f0e8c0c"
