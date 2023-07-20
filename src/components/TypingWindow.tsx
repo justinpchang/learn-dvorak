@@ -97,7 +97,7 @@ function TypingWindow({ text }: Props) {
               animationDuration: "1s",
               transition: "0.12s",
             }}
-            className="absolute inline border-l-[2px] border-[#073642]"
+            className="absolute inline pointer-events-none border-l-[2px] border-[#073642]"
           >
             &nbsp;
           </span>
