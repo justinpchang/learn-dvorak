@@ -96,7 +96,7 @@ function TypingWindow({ text }: Props) {
               animationName: phase === PhaseType.Started ? "" : "flash",
               animationIterationCount: "infinite",
               animationDuration: "1s",
-              transition: "0.12s",
+              transition: "0.08s",
             }}
             className="absolute inline pointer-events-none select-none border-l-[2px] border-[#073642]"
           >
