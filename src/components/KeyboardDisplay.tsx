@@ -1,5 +1,3 @@
-import { robotoMono } from "@/pages/_app";
-import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 
 const KEYBOARD_LAYOUTS = {
@@ -18,7 +16,6 @@ const KEYBOARD_DISPLAY = {
   "{shift}": "⇧",
   "{ctrl}": "⌃",
   "{alt}": "⌥",
-  "~": "`",
   a: "A",
   b: "B",
   c: "C",
@@ -49,26 +46,26 @@ const KEYBOARD_DISPLAY = {
 
 function KeyboardDisplay() {
   return (
-    <div className="pointer-events-none">
-      <Keyboard
-        layout={KEYBOARD_LAYOUTS}
-        layoutName="default"
-        display={KEYBOARD_DISPLAY}
-        theme={"keyboard " + robotoMono.className}
-        buttonTheme={[
-          {
-            buttons: "{tab}",
-            class: "w-[15px]",
-          },
-          {
-            buttons: "{shift}",
-            class: "w-[50px]",
-          },
-        ]}
-        physicalKeyboardHighlight
-        physicalKeyboardHighlightBgColor="#93a1a1"
-        physicalKeyboardHighlightTextColor="white"
-      />
+    <div className="keyboard">
+      {KEYBOARD_LAYOUTS.default.map((row) => (
+        <div className="keyboard-row" key={row}>
+          {row.split(" ").map((key, i) => (
+            <div
+              className={
+                "keyboard-button " +
+                ((key === "u" || key === "h") &&
+                  " underline underline-offset-8 ") +
+                (key === "{shift}" && " w-[50px] ") +
+                (key === "{tab}" && " w-[15px] ") +
+                (key === "{enter}" && " w-[40px] ")
+              }
+              key={key + i}
+            >
+              {(KEYBOARD_DISPLAY as any)[key] || key}
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
