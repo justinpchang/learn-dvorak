@@ -31,7 +31,6 @@ html {
 .keyboard .keyboard-button {
   display: inline-block;
   flex-grow: 1;
-  cursor: pointer;
 }
 
 .keyboard .keyboard-row {
@@ -62,7 +61,6 @@ html {
   padding: 5px;
   background: #fdf6e3;
   border-bottom: 1px solid #b5b5b5;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

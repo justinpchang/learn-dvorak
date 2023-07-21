@@ -1,4 +1,4 @@
-import { KeyboardDisplay } from "@/components/KeyboardDisplay";
+import { KeyboardDisplay } from "@/components/KeyboardDisplay/KeyboardDisplay";
 import { TypingWindow } from "@/components/TypingWindow";
 
 export default function Home() {
