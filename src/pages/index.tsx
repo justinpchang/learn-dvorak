@@ -2,6 +2,7 @@ import { KeyboardDisplay } from "@/components/KeyboardDisplay/KeyboardDisplay";
 import { LevelSelect } from "@/components/LevelSelect/LevelSelect";
 import { TypingWindow } from "@/components/TypingWindow";
 import { LEVELS } from "@/constants/levels";
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { FaGithubAlt, FaQuestion } from "react-icons/fa";
@@ -11,6 +12,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Dvorak Training</title>
+      </Head>
       <div className="flex justify-between items-center mb-12">
         <h1 className="text-3xl">Dvorak Training</h1>
         <div className="flex justify-center items-center gap-4">
