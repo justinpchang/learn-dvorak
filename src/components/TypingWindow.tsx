@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTyping, { CharStateType, PhaseType } from "react-typing-game-hook";
+import { FaMousePointer } from "react-icons/fa";
 
 interface Props {
   text: string;
@@ -103,8 +104,9 @@ function TypingWindow({ text }: Props) {
               &nbsp;
             </span>
           ) : (
-            <div className="w-full h-full flex justify-center items-center absolute top-0 left-0 backdrop-blur-sm cursor-pointer">
-              <span>
+            <div className="w-full h-full flex justify-center items-center absolute top-0 left-0 backdrop-blur-sm cursor-default">
+              <span className="flex items-center gap-4">
+                <FaMousePointer />
                 Click here to{" "}
                 {phase === PhaseType.NotStarted ? "focus" : "continue"}
               </span>
