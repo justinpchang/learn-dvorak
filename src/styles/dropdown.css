@@ -1,0 +1,12 @@
+.Dropdown-root > .Dropdown-control {
+  background: #eee8d5;
+}
+
+.Dropdown-option,
+.Dropdown-option.is-selected {
+  background: #eee8d5 !important;
+}
+
+.Dropdown-option:hover {
+  background: #fdf6e3 !important;
+}

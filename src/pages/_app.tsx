@@ -1,5 +1,7 @@
 import { Container } from "@/components/Container";
 import "@/styles/globals.css";
+import "@/styles/dropdown.css";
+import "@/styles/keyboard.css";
 import type { AppProps } from "next/app";
 import { Roboto_Mono } from "next/font/google";
 

@@ -12,7 +12,6 @@ function TypingWindow({ text }: Props) {
 
   const {
     states: {
-      chars,
       charsState,
       currIndex,
       phase,
@@ -116,9 +115,6 @@ function TypingWindow({ text }: Props) {
             <span className="text-yellow-500 mr-4">Duration: {duration}s</span>
           </>
         ) : null}
-        <span className="mr-4"> Current Index: {currIndex}</span>
-        <span className="mr-4"> Correct Characters: {correctChar}</span>
-        <span className="mr-4"> Error Characters: {errorChar}</span>
       </p>
     </div>
   );

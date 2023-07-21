@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import "react-simple-keyboard/build/css/index.css";
 import {
   KEYBOARD_DISPLAY,
   KEYBOARD_LAYOUT,
   getKeyFromCode,
-} from "./keyboardSettings";
+} from "../../constants/keyboardSettings";
 
 function KeyboardDisplay() {
   useEffect(() => {

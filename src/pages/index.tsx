@@ -1,19 +1,20 @@
 import { KeyboardDisplay } from "@/components/KeyboardDisplay/KeyboardDisplay";
+import { LevelSelect } from "@/components/LevelSelect/LevelSelect";
 import { TypingWindow } from "@/components/TypingWindow";
+import { LEVELS } from "@/constants/levels";
+import { useState } from "react";
 
 export default function Home() {
+  const [level, setLevel] = useState(0);
+
   return (
     <>
-      <h1>Hello world</h1>
-      <h5>Esc to reset</h5>
+      <h1 className="text-3xl mb-6">Dvorak Training</h1>
+      <LevelSelect level={level} setLevel={setLevel} />
+      <h5 className="text-xs mt-6">Esc to reset</h5>
       <div className="border-2 p-4 rounded-lg">
-        <h1 className="mb-2">Charles Darwin, On the Origin of Species</h1>
-        <TypingWindow
-          text={
-            "When we look to the individuals of the same variety or sub-variety of our older cultivated plants and animals, one of the first points which strikes us, is, that they generally differ much more from each other, than do the individuals of any one species or variety in a state of nature."
-          }
-        />
-        <div className="m-4"></div>
+        <TypingWindow text={LEVELS[level].text} />
+        <div className="m-8"></div>
         <KeyboardDisplay />
       </div>
     </>
