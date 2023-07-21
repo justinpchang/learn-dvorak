@@ -12,7 +12,7 @@ export default function Home() {
       <h1 className="text-3xl mb-6">Dvorak Training</h1>
       <LevelSelect level={level} setLevel={setLevel} />
       <h5 className="text-xs mt-6">Esc to reset</h5>
-      <div className="border-2 p-4 rounded-lg">
+      <div className="border-2 border-[#eee8d5] p-4 rounded-lg">
         <TypingWindow text={LEVELS[level].text} />
         <div className="m-8"></div>
         <KeyboardDisplay />

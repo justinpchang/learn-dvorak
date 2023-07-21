@@ -87,21 +87,29 @@ function TypingWindow({ text }: Props) {
             );
           })}
         </div>
-        {phase !== PhaseType.Ended && isFocused ? (
-          <span
-            style={{
-              left: pos.left,
-              top: pos.top,
-              animationName: phase === PhaseType.Started ? "" : "flash",
-              animationIterationCount: "infinite",
-              animationDuration: "1s",
-              transition: "0.08s",
-            }}
-            className="absolute inline pointer-events-none select-none border-l-[2px] border-[#073642]"
-          >
-            &nbsp;
-          </span>
-        ) : null}
+        {phase !== PhaseType.Ended &&
+          (isFocused ? (
+            <span
+              style={{
+                left: pos.left,
+                top: pos.top,
+                animationName: phase === PhaseType.Started ? "" : "flash",
+                animationIterationCount: "infinite",
+                animationDuration: "1s",
+                transition: "0.08s",
+              }}
+              className="absolute inline pointer-events-none select-none border-l-[2px] border-[#073642]"
+            >
+              &nbsp;
+            </span>
+          ) : (
+            <div className="w-full h-full flex justify-center items-center absolute top-0 left-0 backdrop-blur-sm cursor-pointer">
+              <span>
+                Click here to{" "}
+                {phase === PhaseType.NotStarted ? "focus" : "continue"}
+              </span>
+            </div>
+          ))}
       </div>
       <p className="text-sm">
         {phase === PhaseType.Ended && startTime && endTime ? (
