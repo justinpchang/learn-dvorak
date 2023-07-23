@@ -8,7 +8,13 @@ import { useState } from "react";
 
 export default function Home() {
   const [level, setLevel] = useState(0);
-  const [shouldRemap, setShouldRemap] = useState(false);
+  const [shouldRemap, setShouldRemap] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.localStorage.getItem("shouldRemap") === "true";
+    } else {
+      return false;
+    }
+  });
 
   return (
     <>
@@ -23,7 +29,13 @@ export default function Home() {
             type="checkbox"
             className="mr-2"
             checked={shouldRemap}
-            onChange={(e) => setShouldRemap(e.target.checked)}
+            onChange={(e) => {
+              console.log(e.target.checked);
+              setShouldRemap((prev) => {
+                window.localStorage.setItem("shouldRemap", (!prev).toString());
+                return !prev;
+              });
+            }}
           />
           Remap QWERTY keyboard to Dvorak
         </label>
