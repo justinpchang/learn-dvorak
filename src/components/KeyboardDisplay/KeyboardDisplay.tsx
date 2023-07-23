@@ -4,7 +4,7 @@ import {
   KEYBOARD_LAYOUT,
   getKeyFromCode,
 } from "../../constants/keyboardSettings";
-import { remapToDvorak } from "@/constants/remap";
+import { remapToDvorak } from "@/utils/remap";
 
 interface Props {
   shouldRemap: boolean;

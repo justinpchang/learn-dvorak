@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTyping, { CharStateType, PhaseType } from "react-typing-game-hook";
 import { FaMousePointer } from "react-icons/fa";
-import { remapToDvorak } from "@/constants/remap";
+import { remapToDvorak } from "@/utils/remap";
 
 interface Props {
   text: string;
