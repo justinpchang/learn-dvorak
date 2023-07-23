@@ -5,11 +5,8 @@ import {
   getKeyFromCode,
 } from "../../constants/keyboardSettings";
 import { remapToDvorak } from "@/utils/remap";
-
-interface Props {
-  include: string | undefined;
-  shouldRemap: boolean;
-}
+import { useLevelStore } from "@/utils/useLevelStore";
+import { LEVELS } from "@/constants/levels";
 
 function getKeyEl(e: KeyboardEvent, { remap }: { remap: boolean }) {
   const key = remap
@@ -18,7 +15,15 @@ function getKeyEl(e: KeyboardEvent, { remap }: { remap: boolean }) {
   return document.getElementById("key-" + key);
 }
 
-function KeyboardDisplay({ include, shouldRemap }: Props) {
+interface Props {
+  shouldRemap: boolean;
+}
+
+function KeyboardDisplay({ shouldRemap }: Props) {
+  const { level } = useLevelStore();
+
+  const include = LEVELS[level]?.include;
+
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       const key = getKeyEl(e, { remap: shouldRemap });

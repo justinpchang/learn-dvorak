@@ -126,7 +126,7 @@ const shuffle = (array: string[]) =>
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 
-export const WORD_COUNT = 100;
+export const WORD_COUNT = 10;
 
 const createText = (words: string[]) =>
   Array(Math.ceil(words.length / WORD_COUNT))

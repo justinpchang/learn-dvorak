@@ -2,8 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import useTyping, { CharStateType, PhaseType } from "react-typing-game-hook";
 import { FaMousePointer } from "react-icons/fa";
 import { remapToDvorak } from "@/utils/remap";
-import { WORD_COUNT } from "@/constants/levels";
+import { LEVELS, WORD_COUNT } from "@/constants/levels";
 import { ProgressBar } from "./ProgressBar";
+import { useLevelStore } from "@/utils/useLevelStore";
 
 interface Props {
   text: string;
@@ -14,6 +15,8 @@ function TypingWindow({ text, shouldRemap }: Props) {
   const [duration, setDuration] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
   const letterElements = useRef<HTMLDivElement>(null);
+
+  const { level, setLevel } = useLevelStore();
 
   const {
     states: {
@@ -124,7 +127,7 @@ function TypingWindow({ text, shouldRemap }: Props) {
             </div>
           ))}
       </div>
-      <p className="text-sm">
+      <div className="text-sm">
         {phase === PhaseType.Ended && startTime && endTime && (
           <div className="flex justify-between items-center">
             <div className="flex flex-col">
@@ -142,16 +145,18 @@ function TypingWindow({ text, shouldRemap }: Props) {
               <button onClick={() => resetTyping()} className="text-teal-500">
                 &#x21bb; Play again
               </button>
-              <button
-                onClick={() => resetTyping()}
-                className="text-fuchsia-500"
-              >
-                Next chapter &rarr;
-              </button>
+              {level < LEVELS.length - 1 && (
+                <button
+                  onClick={() => setLevel(level + 1)}
+                  className="text-fuchsia-500"
+                >
+                  Next chapter &rarr;
+                </button>
+              )}
             </div>
           </div>
         )}
-      </p>
+      </div>
       <div
         style={{
           opacity: phase === PhaseType.Started ? 1 : 0,

@@ -2,13 +2,11 @@ import { useMemo } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { LEVELS } from "@/constants/levels";
+import { useLevelStore } from "@/utils/useLevelStore";
 
-interface Props {
-  level: number;
-  setLevel: (newLevel: number) => void;
-}
+function LevelSelect() {
+  const { level, setLevel } = useLevelStore();
 
-function LevelSelect({ level, setLevel }: Props) {
   const options = useMemo(
     () =>
       LEVELS.map((level, i) => ({
