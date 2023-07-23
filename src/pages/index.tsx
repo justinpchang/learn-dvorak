@@ -21,7 +21,13 @@ export default function Home() {
   const [incrementer, increment] = useState(0);
   const refreshText = useCallback(() => increment((prev) => prev + 1), []);
 
-  const { level } = useLevelStore();
+  const { level, setLevel } = useLevelStore();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setLevel(parseInt(window.localStorage.getItem("level") ?? "0"));
+    }
+  }, [setLevel]);
 
   useEffect(() => {
     setText(LEVELS[level].text());

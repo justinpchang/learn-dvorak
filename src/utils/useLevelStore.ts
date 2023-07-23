@@ -7,7 +7,10 @@ interface LevelState {
 
 const useLevelStore = create<LevelState>((set) => ({
   level: 0,
-  setLevel: (level) => set({ level }),
+  setLevel: (level) => {
+    window.localStorage.setItem("level", level.toString());
+    set({ level });
+  },
 }));
 
 export { useLevelStore };
