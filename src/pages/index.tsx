@@ -5,7 +5,7 @@ import { TypingWindow } from "@/components/TypingWindow";
 import { LEVELS } from "@/constants/levels";
 import { useLevelStore } from "@/utils/useLevelStore";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
   const [shouldRemap, setShouldRemap] = useState(() => {
@@ -17,11 +17,15 @@ export default function Home() {
   });
   const [text, setText] = useState("");
 
+  // Refresh text for the same level
+  const [incrementer, increment] = useState(0);
+  const refreshText = useCallback(() => increment((prev) => prev + 1), []);
+
   const { level } = useLevelStore();
 
   useEffect(() => {
     setText(LEVELS[level].text());
-  }, [level]);
+  }, [level, incrementer]);
 
   return (
     <>
@@ -48,7 +52,11 @@ export default function Home() {
         <h5>Esc to reset</h5>
       </div>
       <div className="border-2 border-[#eee8d5] p-4 rounded-lg">
-        <TypingWindow text={text} shouldRemap={shouldRemap} />
+        <TypingWindow
+          text={text}
+          refreshText={refreshText}
+          shouldRemap={shouldRemap}
+        />
         <div className="m-4"></div>
         <KeyboardDisplay shouldRemap={shouldRemap} />
       </div>

@@ -8,10 +8,11 @@ import { useLevelStore } from "@/utils/useLevelStore";
 
 interface Props {
   text: string;
+  refreshText: () => void;
   shouldRemap: boolean;
 }
 
-function TypingWindow({ text, shouldRemap }: Props) {
+function TypingWindow({ text, refreshText, shouldRemap }: Props) {
   const [duration, setDuration] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
   const letterElements = useRef<HTMLDivElement>(null);
@@ -30,6 +31,15 @@ function TypingWindow({ text, shouldRemap }: Props) {
     },
     actions: { insertTyping, deleteTyping, resetTyping },
   } = useTyping(text, { skipCurrentWordOnSpace: false, pauseOnError: false });
+
+  const reset = () => {
+    refreshText();
+    letterElements.current?.scrollTo({
+      top: 0,
+    });
+    setDuration(0);
+    resetTyping();
+  };
 
   // Set cursor
   const pos = useMemo(() => {
@@ -65,7 +75,7 @@ function TypingWindow({ text, shouldRemap }: Props) {
   const handleKeyDown = (_letter: string, control: boolean) => {
     const letter = shouldRemap ? remapToDvorak(_letter) : _letter;
     if (letter === "Escape") {
-      resetTyping();
+      reset();
     } else if (letter === "Backspace") {
       deleteTyping(control);
     } else if (letter.length === 1) {
@@ -142,12 +152,15 @@ function TypingWindow({ text, shouldRemap }: Props) {
               </span>
             </div>
             <div className="space-x-4 text-lg">
-              <button onClick={() => resetTyping()} className="text-teal-500">
+              <button onClick={() => reset()} className="text-teal-500">
                 &#x21bb; Play again
               </button>
               {level < LEVELS.length - 1 && (
                 <button
-                  onClick={() => setLevel(level + 1)}
+                  onClick={() => {
+                    setLevel(level + 1);
+                    reset();
+                  }}
                   className="text-fuchsia-500"
                 >
                   Next chapter &rarr;
@@ -163,7 +176,13 @@ function TypingWindow({ text, shouldRemap }: Props) {
         }}
         className="transition-all duration-1000"
       >
-        <ProgressBar percent={Math.round((currIndex / text.length) * 100)} />
+        <ProgressBar
+          percent={
+            phase === PhaseType.Started
+              ? Math.round((currIndex / text.length) * 100)
+              : 0
+          }
+        />
       </div>
     </div>
   );
