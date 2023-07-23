@@ -16,7 +16,7 @@ const shuffle = (array: string[]) =>
 export const WORD_COUNT = 100;
 
 const createText = (words: string[]) =>
-  Array(Math.ceil(words.length / WORD_COUNT))
+  Array(Math.ceil(WORD_COUNT / words.length))
     .fill(0)
     .flatMap(() => shuffle(words))
     .slice(0, WORD_COUNT)
