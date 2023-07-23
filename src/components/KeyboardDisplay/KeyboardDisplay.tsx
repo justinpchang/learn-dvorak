@@ -12,8 +12,8 @@ interface Props {
 
 function getKeyEl(e: KeyboardEvent, { remap }: { remap: boolean }) {
   const key = remap
-    ? remapToDvorak(getKeyFromCode(e.code))
-    : getKeyFromCode(e.code);
+    ? remapToDvorak(getKeyFromCode(e.key))
+    : getKeyFromCode(e.key);
   return document.getElementById("key-" + key);
 }
 
@@ -40,7 +40,7 @@ function KeyboardDisplay({ shouldRemap }: Props) {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
+  }, [shouldRemap]);
 
   return (
     <div className="keyboard">

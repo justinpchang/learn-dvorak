@@ -8,7 +8,11 @@ export const KEYBOARD_LAYOUT: string[] = [
 
 const KEYBOARD_CODES: any = {
   ...ALPHABET_LOWER.reduce(
-    (acc, letter) => ({ ...acc, [`Key${letter.toUpperCase()}`]: letter }),
+    (acc, letter) => ({
+      ...acc,
+      [letter.toUpperCase()]: letter,
+      [letter]: letter,
+    }),
     {}
   ),
   Tab: "{tab}",
