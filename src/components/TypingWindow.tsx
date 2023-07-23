@@ -26,22 +26,29 @@ function TypingWindow({ text, shouldRemap }: Props) {
     actions: { insertTyping, deleteTyping, resetTyping },
   } = useTyping(text, { skipCurrentWordOnSpace: false, pauseOnError: false });
 
-  // set cursor
+  // Set cursor
   const pos = useMemo(() => {
     if (currIndex !== -1 && letterElements.current) {
       let spanref: any = letterElements.current.children[currIndex];
       let left = spanref.offsetLeft + spanref.offsetWidth - 2;
-      let top = spanref.offsetTop - 2;
+      let top = spanref.offsetTop;
+
+      // Set scroll
+      letterElements.current?.scrollTo({
+        top: top - 40,
+        behavior: "smooth",
+      });
+
       return { left, top };
     } else {
       return {
         left: -2,
-        top: 2,
+        top: 0,
       };
     }
   }, [currIndex]);
 
-  // set WPM
+  // Set WPM
   useEffect(() => {
     if (phase === PhaseType.Ended && endTime && startTime) {
       setDuration(Math.floor((endTime - startTime) / 1000));
@@ -50,7 +57,6 @@ function TypingWindow({ text, shouldRemap }: Props) {
     }
   }, [phase, startTime, endTime]);
 
-  // handle key presses
   const handleKeyDown = (_letter: string, control: boolean) => {
     const letter = shouldRemap ? remapToDvorak(_letter) : _letter;
     if (letter === "Escape") {
@@ -69,11 +75,11 @@ function TypingWindow({ text, shouldRemap }: Props) {
         onKeyDown={(e) => handleKeyDown(e.key, e.ctrlKey)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        className="text-xl outline-none relative"
+        className="text-2xl outline-none relative h-[5em]"
       >
         <div
           ref={letterElements}
-          className="tracking-wide pointer-events-none select-none mb-4"
+          className="tracking-wide leading-10 pointer-events-none select-none mb-4 h-[5em] pt-[36px] overflow-hidden absolute"
           tabIndex={0}
         >
           {text.split("").map((letter, index) => {
@@ -96,7 +102,7 @@ function TypingWindow({ text, shouldRemap }: Props) {
             <span
               style={{
                 left: pos.left,
-                top: pos.top,
+                top: "1.7em",
                 animationName: phase === PhaseType.Started ? "" : "flash",
                 animationIterationCount: "infinite",
                 animationDuration: "1s",
