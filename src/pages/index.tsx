@@ -29,8 +29,7 @@ export default function Home() {
             type="checkbox"
             className="mr-2"
             checked={shouldRemap}
-            onChange={(e) => {
-              console.log(e.target.checked);
+            onChange={() => {
               setShouldRemap((prev) => {
                 window.localStorage.setItem("shouldRemap", (!prev).toString());
                 return !prev;
