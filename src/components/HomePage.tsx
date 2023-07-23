@@ -4,11 +4,10 @@ import { LevelSelect } from "@/components/LevelSelect/LevelSelect";
 import { TypingWindow } from "@/components/TypingWindow";
 import { LEVELS } from "@/constants/levels";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 
-export default function Home() {
+function HomePage() {
   const [level, setLevel] = useState(0);
-  const [text, setText] = useState("");
   const [shouldRemap, setShouldRemap] = useState(() => {
     if (typeof window !== "undefined") {
       return window.localStorage.getItem("shouldRemap") === "true";
@@ -17,9 +16,7 @@ export default function Home() {
     }
   });
 
-  useEffect(() => {
-    setText(LEVELS[level].text());
-  }, [level]);
+  const text = useMemo(() => LEVELS[level].text(), [level]);
 
   return (
     <>
@@ -56,3 +53,5 @@ export default function Home() {
     </>
   );
 }
+
+export { HomePage };
