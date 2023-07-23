@@ -99,9 +99,12 @@ export default function About() {
           </a>
           .
         </p>
-        <p className="text-xs">
+        <a
+          href="https://github.com/justinpchang/learn-dvorak/blob/main/LICENSE"
+          className="text-xs"
+        >
           Copyright (c) 2023, Justin Chang. All rights reserved.
-        </p>
+        </a>
       </div>
     </>
   );
