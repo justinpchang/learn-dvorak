@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import useTyping, { CharStateType, PhaseType } from "react-typing-game-hook";
 import { FaMousePointer } from "react-icons/fa";
 import { remapToDvorak } from "@/utils/remap";
+import { WORD_COUNT } from "@/constants/levels";
+import { ProgressBar } from "./ProgressBar";
 
 interface Props {
   text: string;
@@ -126,7 +128,7 @@ function TypingWindow({ text, shouldRemap }: Props) {
         {phase === PhaseType.Ended && startTime && endTime ? (
           <>
             <span className="text-green-500 mr-4">
-              WPM: {Math.round(((60 / duration) * correctChar) / 5)}
+              WPM: {Math.round((60 / duration) * WORD_COUNT)}
             </span>
             <span className="text-blue-500 mr-4">
               Accuracy: {((correctChar / text.length) * 100).toFixed(2)}%
@@ -135,6 +137,14 @@ function TypingWindow({ text, shouldRemap }: Props) {
           </>
         ) : null}
       </p>
+      <div
+        style={{
+          opacity: phase === PhaseType.Started ? 1 : 0,
+        }}
+        className="transition-all duration-1000"
+      >
+        <ProgressBar percent={Math.round((currIndex / text.length) * 100)} />
+      </div>
     </div>
   );
 }
