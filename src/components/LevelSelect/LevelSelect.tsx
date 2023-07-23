@@ -17,13 +17,16 @@ function LevelSelect() {
   );
 
   return (
-    <Dropdown
-      options={options}
-      value={options[level]}
-      onChange={({ value }) => setLevel(parseInt(value))}
-      placeholder="Select a level"
-      className="level-select"
-    />
+    <>
+      <p className="text-md mb-2">Select a chapter</p>
+      <Dropdown
+        options={options}
+        value={options[level]}
+        onChange={({ value }) => setLevel(parseInt(value))}
+        placeholder="Select a chapter"
+        className="level-select"
+      />
+    </>
   );
 }
 

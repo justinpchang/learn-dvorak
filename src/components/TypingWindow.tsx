@@ -128,11 +128,23 @@ function TypingWindow({ text, refreshText, shouldRemap }: Props) {
               &nbsp;
             </span>
           ) : (
-            <div className="w-full h-full flex justify-center items-center absolute top-0 left-0 backdrop-blur-sm cursor-default">
-              <span className="flex items-center gap-4">
+            <div className="w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 backdrop-blur cursor-default">
+              {phase === PhaseType.NotStarted && (
+                <span className="text-lg mb-2">
+                  <span className="block md:hidden">
+                    Chapter {LEVELS[level].title}
+                  </span>
+                  <span className="hidden md:block">
+                    {LEVELS[level].banner}
+                  </span>
+                </span>
+              )}
+              <span className="flex items-center gap-4 font-extrabold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 <FaMousePointer />
-                Click here to{" "}
-                {phase === PhaseType.NotStarted ? "focus" : "continue"}
+                <span className="text-transparent">
+                  Click to{" "}
+                  {phase === PhaseType.NotStarted ? "begin" : "continue"}
+                </span>
               </span>
             </div>
           ))}
