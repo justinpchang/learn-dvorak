@@ -7,6 +7,7 @@ import {
 import { remapToDvorak } from "@/utils/remap";
 
 interface Props {
+  include: string | undefined;
   shouldRemap: boolean;
 }
 
@@ -17,7 +18,7 @@ function getKeyEl(e: KeyboardEvent, { remap }: { remap: boolean }) {
   return document.getElementById("key-" + key);
 }
 
-function KeyboardDisplay({ shouldRemap }: Props) {
+function KeyboardDisplay({ include, shouldRemap }: Props) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       const key = getKeyEl(e, { remap: shouldRemap });
@@ -54,7 +55,10 @@ function KeyboardDisplay({ shouldRemap }: Props) {
                   " underline underline-offset-8 ") +
                 (key === "{shift}" && " w-[50px] ") +
                 (key === "{tab}" && " w-[15px] ") +
-                (key === "{enter}" && " w-[40px] ")
+                (key === "{enter}" && " w-[40px] ") +
+                (!include || include.includes(key)
+                  ? " opacity-100 "
+                  : " opacity-50 ")
               }
               key={key + i}
               id={"key-" + key}

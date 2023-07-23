@@ -1,7 +1,8 @@
 export const LEVELS = [
   {
-    title: "Level 1",
+    title: "1 - Home row",
     text: "This is the first level",
+    include: "aoeuidhtns",
   },
   {
     title: "Level 2",

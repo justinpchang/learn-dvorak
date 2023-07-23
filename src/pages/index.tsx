@@ -43,7 +43,10 @@ export default function Home() {
       <div className="border-2 border-[#eee8d5] p-4 rounded-lg">
         <TypingWindow text={LEVELS[level].text} shouldRemap={shouldRemap} />
         <div className="m-4"></div>
-        <KeyboardDisplay shouldRemap={shouldRemap} />
+        <KeyboardDisplay
+          include={LEVELS[level].include}
+          shouldRemap={shouldRemap}
+        />
       </div>
     </>
   );
