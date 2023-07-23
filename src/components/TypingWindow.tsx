@@ -81,7 +81,7 @@ function TypingWindow({ text, shouldRemap }: Props) {
       >
         <div
           ref={letterElements}
-          className="tracking-wide leading-10 pointer-events-none select-none mb-4 h-[5em] pt-[36px] overflow-hidden absolute"
+          className="tracking-wide leading-10 pointer-events-none select-none mb-4 h-[5em] pt-[36px] pb-[44px] overflow-hidden absolute"
           tabIndex={0}
         >
           {text.split("").map((letter, index) => {
@@ -125,17 +125,32 @@ function TypingWindow({ text, shouldRemap }: Props) {
           ))}
       </div>
       <p className="text-sm">
-        {phase === PhaseType.Ended && startTime && endTime ? (
-          <>
-            <span className="text-green-500 mr-4">
-              WPM: {Math.round((60 / duration) * WORD_COUNT)}
-            </span>
-            <span className="text-blue-500 mr-4">
-              Accuracy: {((correctChar / text.length) * 100).toFixed(2)}%
-            </span>
-            <span className="text-yellow-500 mr-4">Duration: {duration}s</span>
-          </>
-        ) : null}
+        {phase === PhaseType.Ended && startTime && endTime && (
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col">
+              <span className="text-green-500 mr-4">
+                WPM: {Math.round((60 / duration) * WORD_COUNT)}
+              </span>
+              <span className="text-blue-500 mr-4">
+                Accuracy: {((correctChar / text.length) * 100).toFixed(2)}%
+              </span>
+              <span className="text-yellow-500 mr-4">
+                Duration: {duration}s
+              </span>
+            </div>
+            <div className="space-x-4 text-lg">
+              <button onClick={() => resetTyping()} className="text-teal-500">
+                &#x21bb; Play again
+              </button>
+              <button
+                onClick={() => resetTyping()}
+                className="text-fuchsia-500"
+              >
+                Next chapter &rarr;
+              </button>
+            </div>
+          </div>
+        )}
       </p>
       <div
         style={{
