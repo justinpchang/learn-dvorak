@@ -1,5 +1,7 @@
 import START_POSITION_WORDS from "@/pages/api/start_position_words.json";
 import HOME_ROW_WORDS from "@/pages/api/home_row_words.json";
+import EXT_CFKLMPRV_WORDS from "@/pages/api/ext_cfklmprv_words.json";
+import EXT_BGJQWXZY_WORDS from "@/pages/api/ext_bgjqwxzy_words.json";
 import CORE_CONNECTORS from "@/pages/api/core_connectors.json";
 import CORE_SENTENCES from "@/pages/api/core_sentences.json";
 import TOP_200 from "@/pages/api/top_200.json";
@@ -11,7 +13,7 @@ const shuffle = (array: string[]) =>
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 
-export const WORD_COUNT = 10;
+export const WORD_COUNT = 100;
 
 const createText = (words: string[]) =>
   Array(Math.ceil(words.length / WORD_COUNT))
@@ -33,12 +35,12 @@ export const LEVELS = [
   },
   {
     title: "3 - Home row + C, F, K, L, M, P, R, V",
-    text: () => createText(HOME_ROW_WORDS),
+    text: () => createText(EXT_CFKLMPRV_WORDS),
     include: "aoeuidhtnscfklmprv",
   },
   {
     title: "4 - Home row + B, G, J, Q, W, X, Y, Z",
-    text: () => createText(HOME_ROW_WORDS),
+    text: () => createText(EXT_BGJQWXZY_WORDS),
     include: "aoeuidhtnsbgjqwxzy",
   },
   {
