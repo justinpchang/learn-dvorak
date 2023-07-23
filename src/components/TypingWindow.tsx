@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import useTyping, { CharStateType, PhaseType } from "react-typing-game-hook";
 import { FaMousePointer } from "react-icons/fa";
 import { remapToDvorak } from "@/utils/remap";
-import { LEVELS, WORD_COUNT } from "@/constants/levels";
+import { LEVELS } from "@/constants/levels";
 import { ProgressBar } from "./ProgressBar";
 import { useLevelStore } from "@/utils/useLevelStore";
 
@@ -132,7 +132,7 @@ function TypingWindow({ text, shouldRemap }: Props) {
           <div className="flex justify-between items-center">
             <div className="flex flex-col">
               <span className="text-green-500 mr-4">
-                WPM: {Math.round((60 / duration) * WORD_COUNT)}
+                WPM: {Math.round((60 / duration) * text.split(" ").length)}
               </span>
               <span className="text-blue-500 mr-4">
                 Accuracy: {((correctChar / text.length) * 100).toFixed(2)}%

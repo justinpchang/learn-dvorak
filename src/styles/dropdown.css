@@ -2,6 +2,11 @@
   background: #eee8d5;
 }
 
+.Dropdown-menu {
+  overflow-y: visible !important;
+  max-height: unset !important;
+}
+
 .Dropdown-option,
 .Dropdown-option.is-selected {
   background: #eee8d5 !important;
