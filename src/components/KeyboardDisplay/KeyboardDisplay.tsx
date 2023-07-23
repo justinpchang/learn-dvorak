@@ -4,21 +4,32 @@ import {
   KEYBOARD_LAYOUT,
   getKeyFromCode,
 } from "../../constants/keyboardSettings";
+import { remapToDvorak } from "@/constants/remap";
 
-function KeyboardDisplay() {
+interface Props {
+  shouldRemap: boolean;
+}
+
+function getKeyEl(e: KeyboardEvent, { remap }: { remap: boolean }) {
+  const key = remap
+    ? remapToDvorak(getKeyFromCode(e.code))
+    : getKeyFromCode(e.code);
+  return document.getElementById("key-" + key);
+}
+
+function KeyboardDisplay({ shouldRemap }: Props) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      const key = document.getElementById("key-" + getKeyFromCode(e.code));
+      const key = getKeyEl(e, { remap: shouldRemap });
       if (key) key.style.backgroundColor = "#eee8d5";
 
       setTimeout(() => {
-        const key = document.getElementById("key-" + getKeyFromCode(e.code));
         if (key) key.style.backgroundColor = "#fdf6e3";
       }, 500);
     }
 
     function handleKeyUp(e: KeyboardEvent) {
-      const key = document.getElementById("key-" + getKeyFromCode(e.code));
+      const key = getKeyEl(e, { remap: shouldRemap });
       if (key) key.style.backgroundColor = "#fdf6e3";
     }
 

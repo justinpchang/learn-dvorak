@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTyping, { CharStateType, PhaseType } from "react-typing-game-hook";
 import { FaMousePointer } from "react-icons/fa";
+import { remapToDvorak } from "@/constants/remap";
 
 interface Props {
   text: string;
+  shouldRemap: boolean;
 }
 
-function TypingWindow({ text }: Props) {
+function TypingWindow({ text, shouldRemap }: Props) {
   const [duration, setDuration] = useState(0);
   const [isFocused, setIsFocused] = useState(false);
   const letterElements = useRef<HTMLDivElement>(null);
@@ -49,7 +51,8 @@ function TypingWindow({ text }: Props) {
   }, [phase, startTime, endTime]);
 
   // handle key presses
-  const handleKeyDown = (letter: string, control: boolean) => {
+  const handleKeyDown = (_letter: string, control: boolean) => {
+    const letter = shouldRemap ? remapToDvorak(_letter) : _letter;
     if (letter === "Escape") {
       resetTyping();
     } else if (letter === "Backspace") {
